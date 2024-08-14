@@ -2,19 +2,18 @@ import "dotenv/config";
 import express from "express";
 
 // Configuração da porta
-const PORT = 4444;
+const PORT = process.env.PORT || 4444;
 
 // Importar conexão com o banco de dados
+import conn from './src/config/conn.js';
 
-
-import conn from './src/config/conn.js'
 // Importação dos módulos (tabelas)
 import "./src/models/EventoModel.js";
 import "./src/models/PalestranteModel.js";
 import "./src/models/ParticipanteModel.js";
 
 // Importação das rotas
-import palestranteRouter from './src/routes/palestranteRoutes.js';
+import eventoRouter from './src/routes/eventoRoutes.js';
 
 const app = express();
 
@@ -22,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Utilizar as rotas
-app.use('/eventos', palestranteRouter);
+app.use('/eventos', eventoRouter);
 
 app.get("", (req, res) => {
   res.send("Servidor está funcional e rodando!");

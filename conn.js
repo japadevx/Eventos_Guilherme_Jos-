@@ -1,5 +1,8 @@
 import mysql from "mysql2";
 import 'dotenv/config';
+
+dotenv.config();
+
 const conn = mysql.createPool(
   
   {
@@ -9,6 +12,8 @@ const conn = mysql.createPool(
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   port: process.env.MYSQL_PORT,
+  user1: process.env.AUTH_USER,
+  password1: process.env.AUTH_PASSWORD,
 }
 
 );
